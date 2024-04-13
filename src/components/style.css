@@ -1,0 +1,108 @@
+
+
+/* ImageList.css */
+.image_square {
+    padding-left: 20rem;
+    padding-right: 20rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem; /* Adjust the gap between grid items as needed */
+
+   }
+.image_square > * {
+    aspect-ratio: 1 / 1; /* This makes the items square */
+    /* Additional styling for the grid items */
+    
+}
+   .image_square_div img {
+    width: 100%; /* Make the images responsive to their container */
+    height: 100%; /* Maintain aspect ratio */
+    object-fit: cover; /* Cover the area of the grid cell without stretching the image */
+    border-radius: 10px;
+    border-color: transparent; /* Initial border color set to transparent */
+    border-style: solid; /* Specify the border style */
+    transition: border-color 0.3s ease;
+   }
+   .image_square_div.yellow-border img:hover {
+    border-color: yellow;
+   }
+   
+   .image_square_div.green-border img:hover {
+    border-color: green;
+   }
+   
+   .image_square_div.pink-border img:hover {
+    border-color: pink;
+   }
+   
+   .image_square_div.blue-border img:hover {
+    border-color: blue;
+   }
+   
+   /* Adjusted hover effect */
+   .image_square_div img:hover {
+     /* This will only apply if the dynamic border color is not set */
+   }
+    .notes-popup {
+        position: fixed; /* or absolute, depending on your layout */
+        /* height: 162px;
+        width: 162px; */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 20px;
+        z-index: 1000; /* Ensure it's above other content */
+        /* Add more styles as needed */
+       }
+    .notes-popup img{
+        height: 35rem;
+        width: 35rem;
+    }
+/******************************   Upload-Form   ********************************************/
+.file-upload-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 1rem 1rem;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 20%;
+   }
+   
+   .file-upload-button:hover {
+    background-color: #45a049;
+   }
+.upload_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     /* Use justify-content instead of align-content */
+    height: 30rem; /* Ensure the container has a height to see the effect */
+    width: 30rem;
+}
+
+.upload_section_textarea {
+    height: 10rem;
+    width: 100%;
+}
+.upload_button {
+    width: 20%;
+    margin: 10px 20px;
+    padding: 0.5rem 0.5rem;
+}
+
+
+
+
+
+
+
+/******************************   Upload-Form   ********************************************/
