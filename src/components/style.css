@@ -28,7 +28,7 @@
    }
    
    .image_square_div.green-border img:hover {
-    border-color: green;
+    border-color: rgb(25, 190, 25);
    }
    
    .image_square_div.pink-border img:hover {
@@ -36,7 +36,19 @@
    }
    
    .image_square_div.blue-border img:hover {
-    border-color: blue;
+    border-color: rgb(39, 39, 189);
+   }
+   .image_square_div.purple-border img:hover {
+    border-color: rgb(126, 15, 126);
+   }
+   .image_square_div.black-border img:hover {
+    border-color: black;
+   }
+   .image_square_div.orange-border img:hover {
+    border-color: orange;
+   }
+   .image_square_div.red-border img:hover {
+    border-color: red;
    }
    
    /* Adjusted hover effect */
@@ -87,16 +99,31 @@
      /* Use justify-content instead of align-content */
     height: 30rem; /* Ensure the container has a height to see the effect */
     width: 30rem;
+    border: #45a049;
 }
+.upload_section_lable{
+    color: gray;
+}
+.form_section{
+display: flex;
+flex-direction: column;
+width:100%;
+height: 45rem;
 
+}
 .upload_section_textarea {
     height: 10rem;
     width: 100%;
 }
 .upload_button {
     width: 20%;
-    margin: 10px 20px;
+    margin: 10px;
     padding: 0.5rem 0.5rem;
+}
+.button_section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 

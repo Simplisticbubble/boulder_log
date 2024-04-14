@@ -4,9 +4,11 @@ import './style.css';
 
 const UploadForm = ({ onUpload }) => {
  const [selectedFile, setSelectedFile] = useState();
- const [notes, setNotes] = useState('');
- const [location, setLocation] = useState('');
- const [grade, setGrade] = useState('');
+ const [values, setValues] = useState({
+  location: "",
+  grade: "",
+  notes: "",
+ })
 
  const fileSelectedHandler = event => {
     setSelectedFile(event.target.files[0]);
@@ -27,9 +29,9 @@ const UploadForm = ({ onUpload }) => {
 
     const fd = new FormData();
     fd.append('image', newFile);
-    fd.append('notes', notes);
-    fd.append('location', location);
-    fd.append('grade', grade);
+    fd.append('notes', values.notes);
+    fd.append('location', values.location);
+    fd.append('grade', values.grade);
     axios.post('http://localhost:5000/upload', fd)
       .then(res => {
         console.log(res);
@@ -39,33 +41,50 @@ const UploadForm = ({ onUpload }) => {
         console.error(err);
       });
  };
+ const onChange = (e) => {
+  setValues({ ...values, [e.target.name]: e.target.value });
+};
 
  return (
     <div className='upload_section'>
-      <input
-        type="file"
-        id="fileInput"
-        onChange={fileSelectedHandler}
-        multiple
-        style={{ display: 'none' }}
-      />
-       <label htmlFor="fileInput" className="file-upload-button">Upload File</label>
-      <textarea className='upload_section_textarea'
-        value={notes}
-        onChange={(e) => setNotes(e.target.value)}
-        placeholder="Enter notes for the image"
-      />
-      <textarea className = 'upload_section_location'
-        value = {location}
-        onChange={(e) => setLocation(e.target.value)}
-        placeholder="Enter location for the image"
-      />
-      <textarea className = 'upload_section_grade'
-        value = {grade}
-        onChange={(e) => setGrade(e.target.value)}
-        placeholder="Enter grade for the image"
-      />
-      <button className = "upload_button" onClick={fileUploadHandler}>Upload!</button>
+      <form className = "form_section" onSubmit={fileUploadHandler}>
+        <div className = "button_section">
+        <input
+          type="file"
+          id="fileInput"
+          onChange={fileSelectedHandler}
+          multiple
+          style={{ display: 'none' }}
+        />
+        <label htmlFor="fileInput" className="file-upload-button">Upload File</label>
+        </div>
+        <label className = 'upload_section_lable'>location</label>
+        <input className = 'upload_section_smallInput'
+          name="location"
+          value = {values.location}
+          onChange={onChange}
+          placeholder="Enter location for the image"
+        />
+        <label className = 'upload_section_lable'>grade</label>
+        <input className = 'upload_section_smallInput'
+          name="grade"
+          value = {values.grade}
+          onChange={onChange}
+          placeholder="Enter grade for the image"
+        />
+        <label className = 'upload_section_lable'>notes</label>
+        <input className='upload_section_textarea'
+          name="notes"
+          value={values.notes}
+          onChange={onChange}
+          placeholder="Enter notes for the image"
+        />
+        
+        <div className='button_section'>
+          <button className = "upload_button">Upload!</button>
+        </div>
+        
+      </form>
     </div>
  );
 };
