@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './style.css';
 
 
-const ImageList = ({ images, notes }) => {
+const ImageList = ({ images, onDelete }) => {
   const [hoveredImage, setHoveredImage] = useState(null);
   const [borderClass, setBorderClass] = useState('');
 
@@ -30,7 +30,7 @@ const ImageList = ({ images, notes }) => {
            className={`image_square_div ${borderClass}`}
            onClick={() => handleMouseClick(image)}
            onMouseEnter={() => handleMouseEnter(image)}
-            onMouseLeave={handleMouseLeave}
+            // onMouseLeave={handleMouseLeave}
          >
            <img src={image.url} alt={image.filename}/>
            {hoveredImage === image && (
@@ -39,7 +39,10 @@ const ImageList = ({ images, notes }) => {
                 <p>{image.notes}</p> {/* Access the note using the index */}
                 <p>Location: {image.location}</p>
                 <p>Grade: {image.grade}</p>
-                <button onClick={handleMouseLeave}>Close</button>
+                <div className="footer_button">
+                  <button onClick={handleMouseLeave}>Close</button>
+                  <button onClick={()=> onDelete(image.filename)}>Delete</button>
+                </div>
              </div>
            )}
          </div>

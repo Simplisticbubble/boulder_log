@@ -19,6 +19,44 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
  }
 });
+app.delete('/images/:filename', (req, res) => {
+    const filename = req.params.filename;
+    const uploadsDir = path.join(__dirname, 'uploads');
+    const imagesJsonPath = path.join(__dirname, 'images.json');
+
+    // Delete the image file
+    fs.unlink(path.join(uploadsDir, filename), (err) => {
+        if (err) {
+            console.error("Could not delete the file.", err);
+            return res.status(500).send("Unable to delete the file.");
+        }
+
+        // Read the images.json file
+        fs.readFile(imagesJsonPath, 'utf8', (err, data) => {
+            if (err) {
+                console.error("Could not read the images.json file.", err);
+                return res.status(500).send("Unable to read the images.json file.");
+            }
+
+            // Parse the JSON data
+            const imagesData = JSON.parse(data);
+
+            // Filter out the image to be deleted
+            const updatedImages = imagesData.images.filter(image => image.filename !== filename);
+
+            // Write the updated data back to the file
+            fs.writeFile(imagesJsonPath, JSON.stringify({ images: updatedImages }), 'utf8', (err) => {
+                if (err) {
+                    console.error("Could not write the file.", err);
+                    return res.status(500).send("Unable to write the file.");
+                }
+
+                // Send the response
+                res.send('Image deleted successfully');
+            });
+        });
+    });
+});
 
 const upload = multer({ storage: storage });
 

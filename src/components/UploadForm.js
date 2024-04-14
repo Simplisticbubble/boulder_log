@@ -9,6 +9,21 @@ const UploadForm = ({ onUpload }) => {
   grade: "",
   notes: "",
  })
+ const colorOptions = [
+  { value: 'yellow', label: 'Yellow' },
+  { value: 'green', label: 'Green' },
+  { value: 'pink', label: 'Pink' },
+  { value: 'blue', label: 'Blue' },
+  { value: 'purple', label: 'Purple' },
+  { value: 'black', label: 'Black' },
+  { value: 'orange', label: 'Orange' },
+  { value: 'red', label: 'Red' },
+];
+const [selectedColor, setSelectedColor] = useState('yellow');
+const handleColorChange = (e) => {
+  setSelectedColor(e.target.value);
+  setValues({ ...values, grade: e.target.value });
+};
 
  const fileSelectedHandler = event => {
     setSelectedFile(event.target.files[0]);
@@ -66,12 +81,18 @@ const UploadForm = ({ onUpload }) => {
           placeholder="Enter location for the image"
         />
         <label className = 'upload_section_lable'>grade</label>
-        <input className = 'upload_section_smallInput'
-          name="grade"
-          value = {values.grade}
-          onChange={onChange}
-          placeholder="Enter grade for the image"
-        />
+        <select
+        id="grade"
+        name="grade"
+        value={selectedColor}
+        onChange={handleColorChange}
+      >
+        {colorOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
         <label className = 'upload_section_lable'>notes</label>
         <input className='upload_section_textarea'
           name="notes"

@@ -2,12 +2,14 @@
 .title{
   padding-left: 20rem;
   padding-right: 20rem;
+  margin-top: 1rem;
 }
 .modal_header{
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   padding-right: 20rem;
+  margin-top: 1rem;
 
 }
 .header {
@@ -18,3 +20,16 @@
   justify-content: center;
   border-color: gray;
 }
+.modal_button {
+  background-color: gray; /* Example background color */
+  color: white; /* Text color */
+  border: none;
+  border-radius: 60%; /* Make the button circular */
+  padding: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+ }
+ 
+ .modal_button:hover {
+  background-color: #45a049; /* Hover effect */
+ }
